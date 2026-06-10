@@ -1,0 +1,61 @@
+.testimonials-admin-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.test-admin-card {
+  background: white;
+  border-radius: 14px;
+  padding: 22px;
+  border: 1px solid #E8ECF0;
+  transition: var(--transition);
+}
+
+.test-admin-card:hover { box-shadow: 0 6px 20px rgba(0,0,0,0.08); }
+
+.tac-top {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 14px;
+}
+
+.tac-avatar {
+  width: 44px;
+  height: 44px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.tac-name { font-size: 0.95rem; font-weight: 600; color: var(--text); }
+.tac-loc { font-size: 0.8rem; color: var(--text-light); }
+.tac-rating { margin-left: auto; font-size: 0.8rem; }
+
+.tac-msg {
+  font-size: 0.875rem;
+  color: var(--text-light);
+  font-style: italic;
+  line-height: 1.7;
+  margin-bottom: 14px;
+}
+
+.tac-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 12px;
+  border-top: 1px solid #F0F0F0;
+}
+
+@media (max-width: 700px) {
+  .testimonials-admin-grid { grid-template-columns: 1fr; }
+}
