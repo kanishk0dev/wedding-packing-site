@@ -38,13 +38,12 @@ app.get('/seed-data', async (req, res) => {
     await Testimonial.deleteMany({});
     await Settings.deleteMany({});
 
-    const hash = await bcrypt.hash('Admin@123', 10);
     await User.create({
-      name: 'Super Admin',
-      email: 'admin@shringaar.com',
-      password: hash,
-      role: 'superadmin'
-    });
+  name: 'Super Admin',
+  email: 'admin@shringaar.com',
+  password: 'Admin@123',
+  role: 'superadmin'
+});
 
     await Settings.create({
       siteName: 'Shringaar Packing Studio',
