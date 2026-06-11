@@ -27,23 +27,22 @@ app.get('/', (req, res) => {
 // Seed route
 app.get('/seed-data', async (req, res) => {
   try {
-    const bcrypt = require('bcryptjs');
     const Service = require('./models/Service');
-    const User = require('./models/User');
+    const RealUser = require('./models/User');
     const Testimonial = require('./models/Testimonial');
     const Settings = require('./models/Settings');
 
     await Service.deleteMany({});
-    await User.deleteMany({});
+    await RealUser.deleteMany({});
     await Testimonial.deleteMany({});
     await Settings.deleteMany({});
 
-    await User.create({
-  name: 'Super Admin',
-  email: 'admin@shringaar.com',
-  password: 'Admin@123',
-  role: 'superadmin'
-});
+    await RealUser.create({
+      name: 'Super Admin',
+      email: 'admin@shringaar.com',
+      password: 'Admin@123',
+      role: 'superadmin'
+    });
 
     await Settings.create({
       siteName: 'Shringaar Packing Studio',
