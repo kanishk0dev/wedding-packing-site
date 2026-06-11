@@ -38,7 +38,7 @@ app.get('/seed-data', async (req, res) => {
     await Testimonial.deleteMany({});
     await Settings.deleteMany({});
 
-    const hash = await bcrypt.hash('Admin@123', 12);
+    const hash = await bcrypt.hash('Admin@123', 10);
     await User.create({
       name: 'Super Admin',
       email: 'admin@shringaar.com',
