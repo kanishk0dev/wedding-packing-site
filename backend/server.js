@@ -1,4 +1,30 @@
-// Seed route - run once to add data
+const express = require('express');
+const mongoose = require('mongoose');
+const cors = require('cors');
+const path = require('path');
+require('dotenv').config();
+
+const app = express();
+
+app.use(cors({ origin: '*', credentials: true }));
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
+
+// Routes
+app.use('/api/auth', require('./routes/auth'));
+app.use('/api/services', require('./routes/services'));
+app.use('/api/gallery', require('./routes/gallery'));
+app.use('/api/enquiries', require('./routes/enquiries'));
+app.use('/api/testimonials', require('./routes/testimonials'));
+app.use('/api/settings', require('./routes/settings'));
+
+// Home route
+app.get('/', (req, res) => {
+  res.json({ message: '✅ Shringaar Packing Studio API is running!' });
+});
+
+// Seed route
 app.get('/seed-data', async (req, res) => {
   try {
     const bcrypt = require('bcryptjs');
@@ -51,14 +77,23 @@ app.get('/seed-data', async (req, res) => {
     res.json({
       success: true,
       message: '🎉 All data seeded successfully!',
-      data: {
-        services: 9,
-        admin: 'admin@shringaar.com',
-        password: 'Admin@123'
-      }
+      data: { services: 9, admin: 'admin@shringaar.com', password: 'Admin@123' }
     });
 
   } catch (error) {
     res.status(500).json({ success: false, message: error.message });
   }
+});
+
+// Connect to MongoDB
+mongoose.connect(process.env.MONGODB_URI)
+  .then(() => {
+    console.log('✅ MongoDB Connected');
+    require('./utils/seedAdmin');
+  })
+  .catch(err => console.error('MongoDB connection error:', err));
+
+const PORT = process.env.PORT || 5000;
+app.listen(PORT, () => {
+  console.log(`🚀 Server running on port ${PORT}`);
 });
