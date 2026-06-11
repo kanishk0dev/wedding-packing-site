@@ -1,0 +1,203 @@
+.admin-layout {
+  display: flex;
+  min-height: 100vh;
+  background: #F5F7FA;
+}
+
+.admin-sidebar {
+  width: 240px;
+  background: var(--dark);
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 100;
+  transition: width 0.3s ease;
+  overflow: hidden;
+}
+
+.sidebar-collapsed .admin-sidebar { width: 70px; }
+
+.sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 16px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  min-height: 70px;
+}
+
+.sidebar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.sidebar-brand-icon { font-size: 1.3rem; color: var(--secondary); flex-shrink: 0; }
+.sidebar-brand-name {
+  font-family: var(--font-display);
+  color: white;
+  font-size: 1.1rem;
+  white-space: nowrap;
+}
+.sidebar-brand-sub {
+  font-size: 0.6rem;
+  color: rgba(255,255,255,0.4);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  white-space: nowrap;
+}
+
+.sidebar-toggle {
+  background: rgba(255,255,255,0.08);
+  color: rgba(255,255,255,0.6);
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  font-size: 0.8rem;
+  flex-shrink: 0;
+  transition: var(--transition);
+}
+.sidebar-toggle:hover { background: rgba(255,255,255,0.15); color: white; }
+
+.sidebar-nav {
+  flex: 1;
+  padding: 16px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  overflow-y: auto;
+}
+
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  color: rgba(255,255,255,0.6);
+  font-size: 0.875rem;
+  font-weight: 500;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+
+.sidebar-link:hover {
+  background: rgba(255,255,255,0.08);
+  color: white;
+}
+
+.sidebar-link.active {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 4px 12px rgba(139,26,74,0.3);
+}
+
+.nav-icon { font-size: 1.1rem; flex-shrink: 0; }
+
+.sidebar-footer {
+  padding: 16px;
+  border-top: 1px solid rgba(255,255,255,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.sidebar-user {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  overflow: hidden;
+}
+
+.user-avatar {
+  width: 36px;
+  height: 36px;
+  background: var(--primary);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  font-weight: 600;
+  flex-shrink: 0;
+}
+
+.user-name { color: white; font-size: 0.875rem; white-space: nowrap; }
+.user-role { color: rgba(255,255,255,0.4); font-size: 0.7rem; text-transform: uppercase; white-space: nowrap; }
+
+.logout-btn {
+  width: 100%;
+  padding: 10px 14px;
+  background: rgba(255,255,255,0.05);
+  color: rgba(255,255,255,0.5);
+  border-radius: 8px;
+  font-size: 0.875rem;
+  text-align: left;
+  transition: var(--transition);
+  white-space: nowrap;
+}
+.logout-btn:hover { background: rgba(220,50,50,0.15); color: #FF8080; }
+
+/* MAIN CONTENT */
+.admin-main {
+  flex: 1;
+  margin-left: 240px;
+  transition: margin-left 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.sidebar-collapsed .admin-main { margin-left: 70px; }
+
+.admin-topbar {
+  background: white;
+  padding: 0 24px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid #E8ECF0;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+}
+
+.mobile-toggle {
+  font-size: 1.3rem;
+  background: none;
+  color: var(--text);
+  display: none;
+}
+
+.view-site-btn {
+  padding: 8px 16px;
+  background: var(--accent);
+  color: var(--primary);
+  border-radius: 8px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  transition: var(--transition);
+  border: 1px solid var(--border);
+}
+
+.view-site-btn:hover { background: var(--primary); color: white; }
+
+.admin-content {
+  flex: 1;
+  padding: 28px;
+}
+
+@media (max-width: 768px) {
+  .admin-sidebar { transform: translateX(-100%); }
+  .admin-layout.sidebar-collapsed .admin-sidebar { transform: translateX(0); width: 240px; }
+  .admin-main { margin-left: 0 !important; }
+  .mobile-toggle { display: block; }
+}
